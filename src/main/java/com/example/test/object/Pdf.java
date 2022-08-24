@@ -14,13 +14,14 @@ import java.io.File;
 
 public class Pdf {
 
-    public String adres = "/home/lukasz/test.pdf";
+    //public String adres = "/home/lukasz/test.pdf";
+    public String adres = "/test.pdf";
+
 
     public void manipulatePdf() throws Exception {
-        File file = new File(adres);
-        file.getParentFile().mkdirs();
 
-        PdfDocument pdfDoc = new PdfDocument(new PdfWriter(adres));
+        PdfWriter writer = new PdfWriter(adres);
+        PdfDocument pdfDoc = new PdfDocument(writer);
         Document doc = new Document(pdfDoc);
 
         Table table = new Table(UnitValue.createPercentArray(8)).useAllAvailableWidth();
@@ -31,6 +32,9 @@ public class Pdf {
         doc.add(table);
         doc.close();
 
+        //Dział na windowsie
+        File file = new File(adres);
+        Desktop.getDesktop().open(file);
     }
 
 
