@@ -3,6 +3,8 @@ package com.example.test.object;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 import java.awt.*;
@@ -24,11 +26,23 @@ public class Pdf {
         PdfDocument pdfDoc = new PdfDocument(writer);
         Document doc = new Document(pdfDoc);
 
-        Table table = new Table(UnitValue.createPercentArray(8)).useAllAvailableWidth();
+        float columnWidth [] = {100f,100f,100f,100f,100f,100f};
 
-        for (int i = 0; i < 16; i++) {
-            table.addCell("hi");
-        }
+        Table table = new Table(columnWidth);
+
+        table.addCell(new Cell().add(new Paragraph("Sartihin Technology")));
+        table.addCell(new Cell(2,0).add(new Paragraph("Android Battery Manager")));
+        table.addCell(new Cell(3,0).add(new Paragraph("Android Battery Manager")));
+        table.addCell(new Cell(3,0).add(new Paragraph("Android Battery Manager")));
+        table.addCell(new Cell(0,2).add(new Paragraph("Android Battery Manager")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+        table.addCell(new Cell().add(new Paragraph("Picasso Library")));
+
         doc.add(table);
         doc.close();
 
