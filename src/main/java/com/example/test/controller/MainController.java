@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+
 
 public class MainController {
 
@@ -30,19 +30,31 @@ public class MainController {
     @FXML
     private TextField ulica;
 
+    public String miesiac_angl;
+    public String rok;
+
     @FXML
     public void initialize(){
         oswiadczenie.setText("/150103/os.fiz");
         data.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-        String miesiac_angl = String.valueOf(LocalDate.now().getMonth());
+        miesiac_angl = String.valueOf(LocalDate.now().getMonth());
+        rok = String.valueOf(LocalDate.now().getYear());
         masa.setText("1100");
-
-
     }
 
     @FXML
     void drukuj() throws Exception {
         Pdf pdf = new Pdf();
+        pdf.setData(data.getText());
+        pdf.setUlica(ulica.getText());
+        pdf.setKodpocztowy(kod.getText());
+        pdf.setMasa(masa.getText());
+        pdf.setNazwapliku(oswiadczenie.getText());
+        pdf.setRok(rok);
+        pdf.setData(data.getText());
+        pdf.setImie_nazwisko(imie_nazwisko.getText());
+        pdf.setNr_dokumentu(oswiadczenie.getText());
+        pdf.setMiesiac(miesiac(miesiac_angl));
         pdf.manipulatePdf();
     }
     @FXML
