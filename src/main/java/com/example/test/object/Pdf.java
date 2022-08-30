@@ -28,14 +28,14 @@ import java.time.format.DateTimeFormatter;
 
 public class Pdf {
 
-    private String lokalizacja = "/home/lukasz/";
+    //private String lokalizacja = "/home/lukasz/";
 
 
 
     private String nazwapliku;
-    //public String lokalizacja = "/test.pdf";
-    public static final String FONT_BOLD = "src/main/resources/FONTS/LinuxLibertineBold.ttf";
-    public static final String FONT = "src/main/resources/FONTS/LinuxLibertine.ttf";
+    public String lokalizacja = "/";
+    public static final String FONT_BOLD = "FONTS/LinuxLibertineBold.ttf";
+    public static final String FONT = "FONTS/LinuxLibertine.ttf";
 
     public void setNazwapliku(String nazwapliku) {
         this.nazwapliku = nazwapliku.replace("/","");
@@ -125,8 +125,8 @@ public class Pdf {
         doc.close();
 
         //Dział na windowsie
-        //File file = new File(adres);
-        //Desktop.getDesktop().open(file);
+        File file = new File(lokalizacja+nazwapliku+".pdf");
+        Desktop.getDesktop().open(file);
     }
 
 
